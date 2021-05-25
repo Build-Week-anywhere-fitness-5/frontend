@@ -36,10 +36,9 @@ import {
     if(state.username === "" || state.password === "" || state.role === '') {
       setError("Username, password, and role fields are required.");
     } else {
-      createAuthorization().post(`http://localhost:5000/api/login`, { //!!Not sure what our post endpoints are
+      createAuthorization().post(`https://backend-ptct-anywhere-fitness.herokuapp.com/api/auth/login`, { //!!Not sure what our post endpoints are
         username: state.username,
         password: state.password,
-        role: state.role
       })
       .then(res => {
         console.log(res);

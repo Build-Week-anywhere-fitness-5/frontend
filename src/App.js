@@ -5,9 +5,14 @@ import ClassesHomePage from "./components/ClassesHomePage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ClassCardForm from "./components/ClassCardForm";
 import ClassCard from "./components/ClassCard";
+import NavBar from './components/NavBar'
 
 function App() {
   return (
+    <div>
+    
+    <NavBar login = '/' signup = '/signup'/>
+    
     <Router>
       <div className="App">
         <Route exact path="/">
@@ -30,6 +35,7 @@ function App() {
         </Route>
       </div>
     </Router>
+    </div>
   );
 }
 
