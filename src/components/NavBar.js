@@ -14,8 +14,8 @@ export default function NavBar(props) {
             <nav className = 'nav-container'>
                 <h1>Anywhere Fitness</h1>
                 <div className = 'nav-links'>
-                    <Link clasName = 'nav-button' to = {login}>Login</Link>
-                    <Link clasName = 'nav-button' to = {signup}>Sign up</Link>
+                    <Link className = 'nav-button' to = {login}>Login</Link>
+                    <Link className = 'nav-button' to = {signup}>Sign up</Link>
                 </div>
             </nav>
         </div>
