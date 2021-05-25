@@ -1,24 +1,28 @@
 //Home page containing all the available classes
 //user will be redirected to this page once they successfully log in
-import React, { useState } from "react";
-//route path '/protected'
+import React, { useContext } from "react";
+import ClassesContext from './../contexts/ClassesContext';
+import RegisterClassCard from './RegisterClassCard';
 
-import React, { useState } from "react";
-const ClassesHomePage = () => {
-  const [classList, setClassList] = useState({
-    class_id: 1,
-    class_name: "Full Body Athlete",
-    type: "HIIT",
-    date: "2021-05-20",
-    start_time: "High",
-    duration_mins: 30,
-    intensity: "High",
-    location: "Takoma Park",
-    current_registered: 5,
-    max_class_size: 15,
-  });
+const ClassesHomePage = (props) => {
+  
+  //post request
+  const { classes, setClass } = useContext(ClassesContext);
 
-  return <div>Test</div>;
+  return (
+    <div className="classes-container">
+      {/* if `classes` is false/undefined/null, then `classes.map` won't run and blow up
+       */}
+      {classes && classes.map(oneClass => ( 
+        <RegisterClassCard  
+            key={oneClass.class_id}
+            nameOfClass={oneClass.class_name}
+            maxClassSize={oneClass.max_class_size}
+            numCurrentlyRegistered={oneClass.current_registered}       
+        />
+      ))}
+    </div>
+  )
 };
 
 export default ClassesHomePage;
