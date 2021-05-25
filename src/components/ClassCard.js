@@ -1,113 +1,57 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import TextField from "@material-ui/core/TextField";
-import DateFnsUtils from "@date-io/date-fns";
 
-const styles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
-    flexGrow: 1,
+    minWidth: 275,
   },
-  paper: {
-    padding: theme.spacing(2),
-    margin: "auto",
-    maxWidth: 500,
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
   },
-  image: {
-    width: 128,
-    height: 128,
+  title: {
+    fontSize: 14,
   },
-  img: {
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%",
+  pos: {
+    marginBottom: 12,
   },
-}));
+});
 
 export default function ClassCard() {
-  const classes = styles();
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  );
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  const classes = useStyles();
+  const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <div className={classes.root}>
-      <form className={classes.paper}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container spacing={2}>
-            {/* <Grid item>
-            <ButtonBase className={classes.image}>
-              <img
-                className={classes.img}
-                alt="complex"
-                src="/static/images/grid/complex.jpg"
-              />
-            </ButtonBase>
-          </Grid> */}
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction="column" spacing={2}>
-                <Grid item xs>
-                  <TextField
-                    id="filled-basic"
-                    label="Class Name"
-                    variant="filled"
-                  />
-                  <TextField
-                    id="filled-basic"
-                    label="Class Type"
-                    variant="filled"
-                  />
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="Date picker inline"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                  />
-                  <TextField
-                    id="filled-basic"
-                    label="Filled"
-                    variant="filled"
-                  />
-                  <TextField
-                    id="filled-basic"
-                    label="Filled"
-                    variant="filled"
-                  />
-                </Grid>
-                <Grid item>
-                  <Typography variant="body2" style={{ cursor: "pointer" }}>
-                    Remove
-                  </Typography>
-                  <Typography variant="body2" style={{ cursor: "pointer" }}>
-                    Edit
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Typography variant="subtitle1">$19.00</Typography>
-              </Grid>
-            </Grid>
-          </Grid>
-        </MuiPickersUtilsProvider>
-      </form>
-    </div>
+    <Card className={classes.root}>
+      <CardContent>
+        <Typography
+          className={classes.title}
+          color="textSecondary"
+          gutterBottom
+        >
+          Word of the Day
+        </Typography>
+        <Typography variant="h5" component="h2">
+          be{bull}nev{bull}o{bull}lent
+        </Typography>
+        <Typography className={classes.pos} color="textSecondary">
+          adjective
+        </Typography>
+        <Typography variant="body2" component="p">
+          well meaning and kindly.
+          <br />
+          {'"a benevolent smile"'}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
   );
 }
