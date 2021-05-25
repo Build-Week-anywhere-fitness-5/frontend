@@ -1,6 +1,6 @@
 //Home page containing all the available classes
 //user will be redirected to this page once they successfully log in
-import React, { useState } from "react";
+// import React, { useState } from "react";
 //route path '/protected'
 
 import React, { useState } from "react";

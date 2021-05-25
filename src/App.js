@@ -4,6 +4,7 @@ import SignUp from "./components/SignUp";
 import ClassesHomePage from "./components/ClassesHomePage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ClassCardForm from "./components/ClassCardForm";
+import ClassCard from "./components/ClassCard";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
 
         <Route exact path="/cardform">
           <ClassCardForm component={ClassCardForm} />
+        </Route>
+        <Route exact path="/card">
+          <ClassCard component={ClassCard} />
         </Route>
 
         <Route exact path="/protected">
