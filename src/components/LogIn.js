@@ -16,7 +16,8 @@ import {
  const LogIn = () => {
   const [state, setState] = useState({
     username: "",
-    password: ""
+    password: "",
+    role: ''
   });
 
   const [error, setError] = useState();
@@ -32,12 +33,13 @@ import {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if(state.username === "" || state.password === "") {
-      setError("Username and password fields are required.");
+    if(state.username === "" || state.password === "" || state.role === '') {
+      setError("Username, password, and role fields are required.");
     } else {
       createAuthorization().post(`http://localhost:5000/api/login`, { //!!Not sure what our post endpoints are
         username: state.username,
-        password: state.password
+        password: state.password,
+        role: state.role
       })
       .then(res => {
         console.log(res);
@@ -78,6 +80,18 @@ import {
           value={state.password}
           onChange={handleChange}
         />
+        <FormGroup>
+        <Label for ='role'>Role</Label>
+        <select 
+        name = 'role'
+        value = {state.role}
+        onChange = {handleChange}
+        >
+          <option value = ''>-- Select an Option --</option>
+          <option value ='client'>Client</option>
+          <option value ='instructor'>Instructor</option>
+        </select>
+        </FormGroup>
         </FormGroup>
         <Button>Log In</Button>
       </form>
