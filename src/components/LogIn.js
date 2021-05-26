@@ -54,7 +54,7 @@ const LogIn = () => {
   };
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <div className="login-form">
         <Breadcrumb>
           <BreadcrumbItem>Login</BreadcrumbItem>
@@ -62,42 +62,40 @@ const LogIn = () => {
       </div>
 
       <div>
-        <form onSubmit={handleSubmit}>
-          <FormGroup>
-            <Label for="username">Username</Label>
-            <Input
-              type="text"
-              name="username"
-              placeholder="username"
-              value={state.username}
-              onChange={handleChange}
-            />
-          </FormGroup>
+        <FormGroup>
+          <Label for="username">Username</Label>
+          <Input
+            type="text"
+            name="username"
+            placeholder="username"
+            value={state.username}
+            onChange={handleChange}
+          />
+        </FormGroup>
 
+        <FormGroup>
+          <Label for="password">Password</Label>
+          <Input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={state.password}
+            onChange={handleChange}
+          />
           <FormGroup>
-            <Label for="password">Password</Label>
-            <Input
-              type="password"
-              name="password"
-              placeholder="password"
-              value={state.password}
-              onChange={handleChange}
-            />
-            <FormGroup>
-              <Label for="role">Role</Label>
-              <select name="role" value={state.role} onChange={handleChange}>
-                <option value="">-- Select an Option --</option>
-                <option value="client">Client</option>
-                <option value="instructor">Instructor</option>
-              </select>
-            </FormGroup>
+            <Label for="role">Role</Label>
+            <select name="role" value={state.role} onChange={handleChange}>
+              <option value="">-- Select an Option --</option>
+              <option value="client">Client</option>
+              <option value="instructor">Instructor</option>
+            </select>
           </FormGroup>
-          <Button>Log In</Button>
-        </form>
+        </FormGroup>
+        <Button>Log In</Button>
       </div>
 
       <Alert color="danger" className="error">
-        {error}
+        {/* {error} */}
       </Alert>
     </Form>
   );
