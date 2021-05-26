@@ -27,7 +27,7 @@ return(
     <label for="role">choose type:</label>
 
     <select 
-        name = 'role'
+        id = 'role'
         value = {State.role}
         onChange = {Change}
         >
