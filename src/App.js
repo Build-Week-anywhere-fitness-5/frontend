@@ -11,10 +11,13 @@ function App() {
   return (
     <div>
     
-    <NavBar login = '/' signup = '/signup'/>
+    
     
     <Router>
+    <NavBar login = '/' signup = '/signup'/>
+      
       <div className="App">
+      <Switch>
         <Route exact path="/">
           <LogIn component={LogIn} />
         </Route>
@@ -33,6 +36,7 @@ function App() {
         <Route exact path="/protected">
           <ClassesHomePage component={ClassesHomePage} />
         </Route>
+        </Switch>
       </div>
     </Router>
     </div>
