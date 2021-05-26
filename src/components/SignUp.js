@@ -10,7 +10,8 @@ export default function SignUp() {
 
 const [State,setState] = useState({
   username : "",
-  password : ""
+  password : "",
+  role: ''
 })
 
 const Change = (a) => {
@@ -23,12 +24,17 @@ const Change = (a) => {
 return(
   <div >
     
-    <label for="credentials">choose type:</label>
+    <label for="role">choose type:</label>
 
-<select id="credentials">
-  <option value="instructor">instructor</option>
-  <option value="client">client</option>
-</select>
+    <select 
+        id = 'role'
+        value = {State.role}
+        onChange = {Change}
+        >
+          <option value = ''>-- Select an Option --</option>
+          <option value ='client'>Client</option>
+          <option value ='instructor'>Instructor</option>
+        </select>
 
     <input type="email"
               classname="form-control"
