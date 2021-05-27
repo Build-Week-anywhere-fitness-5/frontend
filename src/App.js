@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PrivateRoute from "./components/PrivateRoute";
 
 
@@ -11,10 +11,10 @@ import ClassCardForm from "./components/ClassCardForm";
 import ClassesContext from './contexts/ClassesContext';
 import ClassCard from "./components/ClassCard";
 import NavBar from "./components/NavBar";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
-//With Context API, where am I storing my data...and how am I using the setClasses?
+
   const [classes, setClasses] = useState([
     {
       class_id: 1,
@@ -22,7 +22,7 @@ function App() {
       type: "HIIT",
       date: "2021-05-20",
       start_time: "6:00",
-      feduration_mins: 30,
+      duration_mins: 30,
       intensity: "High",
       location: "Takoma Park",
       current_registered: 5,
@@ -35,29 +35,27 @@ function App() {
     <div>
       <ClassesContext.Provider value={{ classes, setClasses }}>
         <Router>
+
           <NavBar login="/" signup="/signup" />
+
           <div className="App">
             <Switch>
+
               <Route exact path="/">
-                <LogIn component={LogIn} />
+                <LogIn/>
               </Route>
+                
+              <Route exact path="/signup" component={SignUp}/>
 
-              <Route exact path="/signup">
-                <SignUp component={SignUp} />
-              </Route>
+              <PrivateRoute exact path="/cardform" component={ClassCardForm}/>   
+                
+              <PrivateRoute exact path="/card" component={ClassCard}/>
 
-              <Route exact path="/cardform">
-                <ClassCardForm component={ClassCardForm} />
-              </Route>
-              <Route exact path="/card">
-                <ClassCard component={ClassCard} />
-              </Route>
-
-              <Route exact path="/protected">
-                <ClassesHomePage component={ClassesHomePage} />
-              </Route>
+              <PrivateRoute exact path="/protected" component={ClassesHomePage}/>
+              
             </Switch>
           </div>
+
         </Router>
       </ClassesContext.Provider>
     </div>
