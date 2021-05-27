@@ -13,6 +13,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 //*Removed Switch and Link - they were not being used
 import ClassCardForm from "./components/ClassCardForm";
 import ClassesContext from './contexts/ClassesContext';
+import ClassCard from "./components/ClassCard";
+import NavBar from './components/NavBar'
 
 function App() {
 //With Context API, where am I storing my data...and how am I using the setClasses?
@@ -33,6 +35,10 @@ function App() {
 
    
   return (
+    <div>
+    
+    <NavBar login = '/' signup = '/signup'/>
+    
     <Router>
       <div className="App">
         <ClassesContext.Provider value={{ classes, setClasses }}>
@@ -44,14 +50,15 @@ function App() {
             <SignUp />
           </Route>
 
-          <Route exact path="/cardform" >
-            <ClassCardForm />
+          <Route exact path="/card">
+            <ClassCard />
           </Route>
 
           <PrivateRoute exact path="/protected" component={ClassesHomePage} />
         </ClassesContext.Provider>
       </div>
     </Router>
+    </div>
   );
 }
 
