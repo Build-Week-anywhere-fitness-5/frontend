@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+//import { useHistory } from "react-router";
 
-import createAuthorization from "./../helpers/axiosWithAuth";
+//import createAuthorization from "./../helpers/axiosWithAuth";
 import "./signup.css";
 
 export default function SignUp() {
