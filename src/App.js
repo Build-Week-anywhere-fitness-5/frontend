@@ -11,7 +11,6 @@ import ClassCardForm from "./components/ClassCardForm";
 import ClassesContext from './contexts/ClassesContext';
 import ClassCard from "./components/ClassCard";
 import NavBar from "./components/NavBar";
-import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -34,31 +33,33 @@ function App() {
    
   return (
     <div>
-      <Router>
-        <NavBar login="/" signup="/signup" />
-        <div className="App">
-          <Switch>
-            <Route exact path="/">
-              <LogIn component={LogIn} />
-            </Route>
+      <ClassesContext.Provider value={{ classes, setClasses }}>
+        <Router>
+          <NavBar login="/" signup="/signup" />
+          <div className="App">
+            <Switch>
+              <Route exact path="/">
+                <LogIn component={LogIn} />
+              </Route>
 
-            <Route exact path="/signup">
-              <SignUp component={SignUp} />
-            </Route>
+              <Route exact path="/signup">
+                <SignUp component={SignUp} />
+              </Route>
 
-            <Route exact path="/cardform">
-              <ClassCardForm component={ClassCardForm} />
-            </Route>
-            <Route exact path="/card">
-              <ClassCard component={ClassCard} />
-            </Route>
+              <Route exact path="/cardform">
+                <ClassCardForm component={ClassCardForm} />
+              </Route>
+              <Route exact path="/card">
+                <ClassCard component={ClassCard} />
+              </Route>
 
-            <Route exact path="/protected">
-              <ClassesHomePage component={ClassesHomePage} />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+              <Route exact path="/protected">
+                <ClassesHomePage component={ClassesHomePage} />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </ClassesContext.Provider>
     </div>
   );
 }
