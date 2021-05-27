@@ -6,15 +6,13 @@ import "./App.css";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import ClassesHomePage from "./components/ClassesHomePage";
-//import RegisterClass from "./components/RegisterClassPage"; //Struggling with my naming systems here
 
-
-import { BrowserRouter as Router, Route } from "react-router-dom";
-//*Removed Switch and Link - they were not being used
 import ClassCardForm from "./components/ClassCardForm";
 import ClassesContext from './contexts/ClassesContext';
 import ClassCard from "./components/ClassCard";
-import NavBar from './components/NavBar'
+import NavBar from "./components/NavBar";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
 //With Context API, where am I storing my data...and how am I using the setClasses?
@@ -36,28 +34,31 @@ function App() {
    
   return (
     <div>
-    
-    <NavBar login = '/' signup = '/signup'/>
-    
-    <Router>
-      <div className="App">
-        <ClassesContext.Provider value={{ classes, setClasses }}>
-          <Route exact path="/">
-            <LogIn />
-          </Route>
+      <Router>
+        <NavBar login="/" signup="/signup" />
+        <div className="App">
+          <Switch>
+            <Route exact path="/">
+              <LogIn component={LogIn} />
+            </Route>
 
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
+            <Route exact path="/signup">
+              <SignUp component={SignUp} />
+            </Route>
 
-          <Route exact path="/card">
-            <ClassCard />
-          </Route>
+            <Route exact path="/cardform">
+              <ClassCardForm component={ClassCardForm} />
+            </Route>
+            <Route exact path="/card">
+              <ClassCard component={ClassCard} />
+            </Route>
 
-          <PrivateRoute exact path="/protected" component={ClassesHomePage} />
-        </ClassesContext.Provider>
-      </div>
-    </Router>
+            <Route exact path="/protected">
+              <ClassesHomePage component={ClassesHomePage} />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }

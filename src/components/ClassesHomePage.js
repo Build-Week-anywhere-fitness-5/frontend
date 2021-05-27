@@ -5,7 +5,6 @@ import ClassesContext from './../contexts/ClassesContext';
 import RegisterClassCard from './RegisterClassCard';
 
 const ClassesHomePage = (props) => {
-  
   //post request
   const { classes, setClass } = useContext(ClassesContext);
 
