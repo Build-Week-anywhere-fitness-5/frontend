@@ -1,9 +1,37 @@
 import React from 'react';
+import ClassesContext from './../contexts/ClassesContext';
+
+
+
+const newClass = {
+    class_name: "",
+    type: "Strength",
+    date: "2021-05-22T04:00:00.000Z",
+    start_time: "9:30 AM",
+    duration_mins: 30,
+    intensity: "Medium",
+    location: "Fallsgrove Park",
+    current_registered: 3,
+    max_class_size: 15
+}
+
+
 
 const RegisterClassCard = props => {
     const { nameOfClass, typeOfClass, dateOfClass, startingTime, durationOfClass, 
         classIntensity, classLocation, maxClassSize, numCurrentlyRegistered  } = props;
 
+    const { classes, setClasses } = useContext(ClassesContext);
+    const [ classes, setClasses] = useState(newClass);//Not sure if this is right
+
+       // /api/class/:class_id
+        const handleEdititing = e => {
+            e.preventDefault()
+            createAuthorization().put(`api/class/:${class_id}`, classes)//the .put is what updates only to the specific friend with that id, to the database, the push (below) is what redirects us to that friendlist page
+                .then(() => push('/protected')) //pushing up back to the FriendsList page, the protected page, adding our new friend 
+                .catch(err => console.log(err))
+        }
+    
     return(
         <div className="class">
             <h1>Class Name: {nameOfClass}</h1>
@@ -28,10 +56,4 @@ const RegisterClassCard = props => {
 
 export default RegisterClassCard;
 
-            // dateOfClass={oneClass.date}
-            // startingTime={oneClass.start_time}
-            // durationOfClass={oneClass.duration_mins}
-            // classIntensity={oneClass.intensity}
-            // classLocation={oneClass.location}
-            // numCurrentlyRegistered={oneClass.current_registered}  
-            // maxClassSize={oneClass.max_class_size}
+            
